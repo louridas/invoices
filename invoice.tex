@@ -1,0 +1,74 @@
+\documentclass[a4paper]{article}
+\usepackage{fontspec} 
+\usepackage{multirow}
+
+\usepackage{tabu}
+\usepackage{numprint}
+\makeatletter
+\def\usermacro#1{\euro\,\numprint{\zap@space #1 \@empty}}
+\makeatother
+\tabulinesep=0.1cm
+
+\thispagestyle{empty}
+% DOCUMENT LAYOUT
+\usepackage[vmargin=5cm]{geometry} 
+\geometry{a4paper, textwidth=6in, textheight=8.5in, marginparsep=7pt, marginparwidth=.6in}
+\setlength\parindent{0in}
+
+\usepackage{eurosym}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+
+\defaultfontfeatures{Mapping=tex-text} 
+\setromanfont [Ligatures={Common},
+BoldFont={DejaVu Serif Bold},ItalicFont={DejaVu Serif Italic}]{DejaVu Serif}
+\setsansfont [Ligatures={Common}, BoldFont={DejaVu Sans Bold},
+ItalicFont={DejaVu Sans Oblique}]{DejaVu Sans}
+\setmonofont[Scale=0.8]{DejaVu Sans Mono} 
+
+\begin{document}
+
+\fontsize{10}{12}\selectfont
+
+\vspace{3cm}
+
+\begin{minipage}[t]{0.5\textwidth}
+ΑΡΙΘΜΟΣ: {{NUM}}\\
+ΗΜΕΡΟΜΗΝΙΑ: {{DATE}}\\
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+{{STAMP}}
+\end{minipage}
+
+\vspace{1cm}
+ΕΠΩΝΥΜΙΑ: {{CLIENT}}\\[0.2cm]
+ΕΠΑΓΓΕΛΜΑ: {{OCCUPATION}} ΔΟΥ: {{TAXOFFICE}}\\ [0.2cm]
+ΔΙΕΥΘΥΝΣΗ: {{ADDRESS}} ΑΦΜ: {{TAXNUMBER}}\\ [0.2cm]
+
+\vspace{0.4cm}
+\begin{tabu} to \textwidth {|X[4]|>{\tabudecimal \usermacro}X[r]|}
+  \hline
+  \begin{center}ΑΙΤΙΟΛΟΓΙΑ---ΠΕΡΙΓΡΑΦΗ \end{center}& \begin{center}ΑΞΙΑ\end{center}\\
+  \hline 
+  {{DESCRIPTION}} & {{VALUE}}\\ 
+  \vspace{5cm} & \\
+  Παρακρατήθηκε φόρος 20\% = \euro\,\numprint{{{TAX}}} & \\
+  \hline
+\end{tabu}
+
+\vspace{1cm}
+\begin{tabu} to \textwidth {|X[1]|X[3]|X[1]|>{\tabudecimal \usermacro}X[r]|}
+\hline
+\multirow{3}{*}{Ολογράφως} & \multirow{3}{6cm}{{{NUMBERTEXT}}}  
+& Αξία: & {{VALUE}} \\
+ & & ΦΠΑ 23\%: & {{VAT}} \\
+ & & Σύνολο: & {{TOTAL}} \\
+\hline
+\end{tabu}
+
+\vspace{1cm}
+\begin{center}
+Έκδοση
+\end{center}
+
+\end{document}

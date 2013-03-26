@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<invoice>
+  <num>1</num>
+  <date>26/03/2013</date>
+  <stamp>
+    ΠΑΝΑΓΙΩΤΗΣ ΘΕΟΔ.\ ΛΟΥΡΙΔΑΣ\\
+    ΣΥΜΒΟΥΛΟΣ ΠΛΗΡΟΦΟΡΙΚΗΣ\\
+    ΝΟΜΑΔΩΝ 44--- Τ.Κ. 91019\\
+    ΑΦΜ: 9876543210---ΔΟΥ: ΣΕΛΗΝΗΣ
+  </stamp>
+  <client>ΕΔΕΤ Α.Ε.
+  </client>
+  <occupation>Παροχή Δικτυακών Υπηρεσιών
+  </occupation>
+  <taxoffice>Μεγάλων Επιχειρήσεων
+  </taxoffice>
+  <address>Μεσογείων 56, 11527, Αθήνα
+  </address>
+  <taxnumber>0123456789</taxnumber>
+  <description>Παροχή συμβουλευτικών υπηρεσιών στο έργο All Together Now
+  βάσει σύμβασης 2341/22-12-2012
+  </description>
+  <value>99999.99</value>
+</invoice>
