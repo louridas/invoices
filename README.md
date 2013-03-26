@@ -23,4 +23,4 @@ the following elements:
 * description: the description of the work performed
 * value: the value of the work performed
 
-A sample `invoice.xml` is included in the repo.
+A sample `invoice.xml` is included in the repo, as is an [example output](https://github.com/louridas/invoices/blob/master/invoice_1.pdf).
