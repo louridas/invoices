@@ -2,6 +2,8 @@
 \usepackage{fontspec} 
 \usepackage{multirow}
 
+\usepackage[framemethod=TikZ]{mdframed}
+
 \usepackage{tabu}
 \usepackage{numprint}
 \makeatletter
@@ -32,15 +34,22 @@ ItalicFont={DejaVu Sans Oblique}]{DejaVu Sans}
 
 \vspace{3cm}
 
-\begin{minipage}[t]{0.5\textwidth}
+\begin{minipage}{0.4\textwidth}
 ΑΡΙΘΜΟΣ: {{NUM}}\\
 ΗΜΕΡΟΜΗΝΙΑ: {{DATE}}\\
 \end{minipage}
-\begin{minipage}[t]{0.5\textwidth}
+\begin{minipage}{0.5\textwidth}
+\begin{mdframed}[roundcorner=10pt]
+\begin{center}
 {{STAMP}}
+\end{center}
+\end{mdframed}
 \end{minipage}
 
-\vspace{1cm}
+{\Large ΤΙΜΟΛΟΓΙΟ}
+
+\vspace{0.8cm}
+
 ΕΠΩΝΥΜΙΑ: {{CLIENT}}\\[0.2cm]
 ΕΠΑΓΓΕΛΜΑ: {{OCCUPATION}} ΔΟΥ: {{TAXOFFICE}}\\ [0.2cm]
 ΔΙΕΥΘΥΝΣΗ: {{ADDRESS}} ΑΦΜ: {{TAXNUMBER}}\\ [0.2cm]
