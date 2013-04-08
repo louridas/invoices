@@ -21,4 +21,6 @@
   βάσει σύμβασης 2341/22-12-2012
   </description>
   <value>99999.99</value>
+  <tax_rate>0.20</tax_rate>
+  <vat_rate>0.23</vat_rate>
 </invoice>
