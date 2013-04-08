@@ -23,6 +23,7 @@ the following elements:
 * taxnumber: the client taxnumber
 * description: the description of the work performed
 * value: the value of the work performed; this is the only amount that needs to be entered, as the tax, the VAT, as well 
-  the string representation of the amount are produced automatically
+  the string representation of the amount are produced automatically, except if a vat element is present
+* vat: if present, the value of VAT to be used; useful in cases where VAT is not to be levied at all
 
 A sample `invoice.xml` is included in the repo, as is an [example output](https://github.com/louridas/invoices/blob/master/invoice_1.pdf).
