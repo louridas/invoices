@@ -22,8 +22,9 @@ the following elements:
 * address: the client address
 * taxnumber: the client taxnumber
 * description: the description of the work performed
-* value: the value of the work performed; this is the only amount that needs to be entered, as the tax, the VAT, as well 
-  the string representation of the amount are produced automatically, except if a vat element is present
-* vat: if present, the value of VAT to be used; useful in cases where VAT is not to be levied at all
+* value: the value of the work performed; this is the only amount that needs to be entered, as the withholding tax,  
+  the VAT, as well the string representation of the amount are produced automatically
+* vat_rate: if present, the VAT rate to be applied; default is 0.23
+* tax_rate: if present, the withholding tax rate to be applied; default is 0.20
 
 A sample `invoice.xml` is included in the repo, as is an [example output](https://github.com/louridas/invoices/blob/master/invoice_1.pdf).
