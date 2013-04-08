@@ -114,20 +114,16 @@ def num_to_text_hundreds(number, f):
                 parts.append(hundreds_n[h - 1])
     if t > 1:
         parts.append(tens[t - 1])
-        if f == True:
-            parts.append(one_to_twenty_f[mod10 - 1])
-        else:
-            parts.append(one_to_twenty_n[mod10 - 1])
-    elif t == 1:
-        if f == True:
-            parts.append(one_to_twenty_f[10 * t + mod10 - 1])
-        else:
-            parts.append(one_to_twenty_n[10 * t + mod10 - 1])
+        if mod10 > 0:
+            if f == True:
+                parts.append(one_to_twenty_f[mod10 - 1])
+            else:
+                parts.append(one_to_twenty_n[mod10 - 1])
     elif mod10 > 0:
         if f == True:
             parts.append(one_to_twenty_f[10 * t + mod10 - 1])
         else:
-            parts.append(one_to_twenty_n[10 * t + mod10 - 1])        
+            parts.append(one_to_twenty_n[10 * t + mod10 - 1])
     return ' '.join(parts)
 
 def num_to_text_thousands(number):
@@ -170,7 +166,6 @@ def num_to_text_billions(number):
 def num_to_text(number):
     return num_to_text_billions(number)
 
-
 if len(sys.argv) < 2:
     print "Usage: python invoice.py invoice_data.xml"
     sys.exit(1)
@@ -190,7 +185,11 @@ description = root.find('description').text
 value_f = float(root.find('value').text)
 value = "{:.2f}".format(value_f)
 tax_f = value_f * 0.20
-vat_f = value_f * 0.23
+vat_element = root.find('vat')
+if vat_element is not None:
+    vat_f = float(vat_element.text)
+else:
+    vat_f = value_f * 0.23
 total_f = value_f + vat_f
 tax = "{:.2f}".format(tax_f)
 vat = "{:.2f}".format(vat_f)
