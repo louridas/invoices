@@ -189,12 +189,18 @@ if tax_rate_el is not None:
 else:
     tax_rate = "0.20" # default value
 tax_rate_f = float(tax_rate)
+tax_rate_prc = "{:.2f}".format(tax_rate_f * 100)
+if tax_rate_prc.endswith('.00'):
+    tax_rate_prc = tax_rate_prc.replace('.00', '')
 vat_rate_el = root.find('vat_rate')
 if vat_rate_el is not None:
     vat_rate = vat_rate_el.text
 else:
     vat_rate = "0.23" # default value
 vat_rate_f = float(vat_rate)
+vat_rate_prc = "{:.2f}".format(vat_rate_f * 100)
+if vat_rate_prc.endswith('.00'):
+    vat_rate_prc = vat_rate_prc.replace('.00', '')
 value = "{:.2f}".format(value_f)
 tax_f = value_f * tax_rate_f
 vat_element = root.find('vat')
@@ -228,9 +234,9 @@ with codecs.open('invoice.tex', mode='r', encoding='utf-8') as inf:
             line = line.replace("{{TAXNUMBER}}", taxnumber)
             line = line.replace("{{DESCRIPTION}}", description)
             line = line.replace("{{VALUE}}", value)
-            line = line.replace("{{TAXRATE}}", tax_rate)
+            line = line.replace("{{TAXRATE}}", tax_rate_prc)
             line = line.replace("{{TAX}}", tax)
-            line = line.replace("{{VATRATE}}", vat_rate)
+            line = line.replace("{{VATRATE}}", vat_rate_prc)
             line = line.replace("{{VAT}}", vat)
             line = line.replace("{{TOTAL}}", total)
             line = line.replace("{{NUMBERTEXT}}",
