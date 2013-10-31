@@ -119,11 +119,13 @@ def num_to_text_hundreds(number, f):
                 parts.append(one_to_twenty_f[mod10 - 1])
             else:
                 parts.append(one_to_twenty_n[mod10 - 1])
+    elif t == 1:
+        parts.append(one_to_twenty_n[10 + mod10 - 1])
     elif mod10 > 0:
         if f == True:
-            parts.append(one_to_twenty_f[10 * t + mod10 - 1])
+            parts.append(one_to_twenty_f[mod10 - 1])
         else:
-            parts.append(one_to_twenty_n[10 * t + mod10 - 1])
+            parts.append(one_to_twenty_n[mod10 - 1])
     return ' '.join(parts)
 
 def num_to_text_thousands(number):
