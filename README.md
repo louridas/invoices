@@ -42,4 +42,4 @@ The data are contained in the following elements:
 
 If you set `-e` then the program will also produce English output. Note that this may require small adjustments in the LaTeX file, as including both Greek and English numbers in full may take more vertical space than you may have foreseen in your LaTeX template file.
 
-A Greek sample `invoice.xml` is included in the repo, as is an [example output](https://github.com/louridas/invoices/blob/master/invoice_1.pdf). For English, you can check `invoice_2.xml` and its [example output](https://github.com/louridas/invoices/blob/master/invoice_2.pdf)
+A Greek sample `invoice.xml` is included in the repo, as is an [example output](https://github.com/louridas/invoices/blob/master/invoice_1.pdf). For English, you can check `invoice_2.xml` and its [example output](https://github.com/louridas/invoices/blob/master/invoice_2.pdf).
