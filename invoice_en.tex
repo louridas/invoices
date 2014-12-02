@@ -1,0 +1,96 @@
+\documentclass[a4paper]{article}
+\usepackage{fontspec} 
+\usepackage{multirow}
+
+\usepackage[framemethod=TikZ]{mdframed}
+
+\usepackage{tabu}
+\usepackage{numprint}
+\makeatletter
+\def\usermacro#1{\euro\,\numprint{\zap@space #1 \@empty}}
+\makeatother
+\tabulinesep=0.1cm
+
+\thispagestyle{empty}
+% DOCUMENT LAYOUT
+\usepackage[vmargin=5cm]{geometry} 
+\geometry{a4paper, textwidth=6in, textheight=8.5in, marginparsep=7pt, marginparwidth=.6in}
+\setlength\parindent{0in}
+
+\usepackage[absolute]{textpos}
+\usepackage{calc}
+
+\usepackage{eurosym}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+
+\defaultfontfeatures{Mapping=tex-text} 
+\setromanfont [Ligatures={Common},
+BoldFont={DejaVu Serif Bold},ItalicFont={DejaVu Serif Italic}]{DejaVu Serif}
+\setsansfont [Ligatures={Common}, BoldFont={DejaVu Sans Bold},
+ItalicFont={DejaVu Sans Oblique}]{DejaVu Sans}
+\setmonofont[Scale=0.8]{DejaVu Sans Mono} 
+
+\setlength{\TPHorizModule}{30mm}
+\setlength{\TPVertModule}{\TPHorizModule}
+\textblockorigin{\linewidth}{10mm} 
+
+\begin{document}
+
+\fontsize{10}{12}\selectfont
+
+\begin{textblock}{2.5}(0, 0)
+\begin{minipage}{\textwidth}
+\begin{mdframed}[roundcorner=10pt]
+\fontsize{8}{10}\selectfont
+\begin{center}
+{{STAMP}}
+\end{center}
+\end{mdframed}
+\end{minipage}
+\end{textblock}
+
+\begin{minipage}{0.8\textwidth}
+ΑΡΙΘΜΟΣ / NUMBER: {{NUM}}\\
+ΗΜΕΡΟΜΗΝΙΑ / DATE (DD/MM/YYYY): {{DATE}}\\
+\end{minipage}
+
+{\Large ΤΙΜΟΛΟΓΙΟ / INVOICE}
+
+\vspace{0.5cm}
+
+ΕΠΩΝΥΜΙΑ / NAME: {{CLIENT}}\\
+ΕΠΑΓΓΕΛΜΑ / OCCUPATION : {{OCCUPATION}} \\
+ΑΦΜ / TAX IDENTIFICATION NUMBER: {{TAXNUMBER}}\\
+ΔΟΥ / INCORPORATION: {{TAXOFFICE}}\\
+ΔΙΕΥΘΥΝΣΗ / ADDRESS: {{ADDRESS}}
+
+\vspace{0.4cm}
+\begin{tabu} to \textwidth {|X[4]|>{\tabudecimal \usermacro}X[r]|}
+  \hline
+  \begin{center}ΑΙΤΙΟΛΟΓΙΑ---ΠΕΡΙΓΡΑΦΗ /
+    DESCRIPTION \end{center}& \begin{center}ΑΞΙΑ / VALUE\end{center}\\
+  \hline 
+  {{DESCRIPTION}} & {{VALUE}}\\ 
+  \vspace{5cm} & \\
+  Παρακρατήθηκε φόρος / Withholding taxes \numprint{{{TAXRATE}}}\% = \euro\,\numprint{{{TAX}}} & \\
+  \hline
+\end{tabu}
+
+\vspace{1cm}
+\begin{tabu} to \textwidth {|X[1]|X[3]|X[1.5]|>{\tabudecimal \usermacro}X[r]|}
+\hline
+\multirow{3}{*}{\shortstack{Ολογράφως \\ In words}} 
+& \multirow{3}{6cm}{{{NUMBERTEXT}}}  
+& Αξία / Value: & {{VALUE}} \\
+ & & ΦΠΑ / VAT \numprint{{{VATRATE}}}\%: & {{VAT}} \\
+ & & Σύνολο / Total: & {{TOTAL}} \\
+\hline
+\end{tabu}
+
+\vspace{1cm}
+\begin{center}
+Έκδοση / Issue
+\end{center}
+
+\end{document}

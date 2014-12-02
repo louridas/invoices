@@ -4,6 +4,7 @@
 import codecs
 import sys
 import xml.etree.ElementTree as ET
+import argparse
 
 one_to_twenty_n = [
     'ένα',
@@ -168,11 +169,15 @@ def num_to_text_billions(number):
 def num_to_text(number):
     return num_to_text_billions(number)
 
-if len(sys.argv) < 2:
-    print "Usage: python invoice.py invoice_data.xml"
-    sys.exit(1)
 
-tree = ET.parse(sys.argv[1])
+parser = argparse.ArgumentParser(description='Invoice creator')
+parser.add_argument('invoice_data')
+parser.add_argument('-t', '--template', dest='template',
+                    default='invoice.tex')
+
+args = parser.parse_args()
+
+tree = ET.parse(args.invoice_data)
 root = tree.getroot()
 
 num = root.find('num').text
@@ -223,7 +228,7 @@ if floatpart != '' :
 
 outfn = 'invoice_' + num + '.tex'
   
-with codecs.open('invoice.tex', mode='r', encoding='utf-8') as inf:
+with codecs.open(args.template, mode='r', encoding='utf-8') as inf:
     with codecs.open(outfn, mode='w', encoding='utf-8') as outf:
         for line in inf:
             line = line.replace("{{NUM}}", num)
