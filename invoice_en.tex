@@ -73,18 +73,20 @@ ItalicFont={DejaVu Sans Oblique}]{DejaVu Sans}
   \hline 
   {{DESCRIPTION}} & {{VALUE}}\\ 
   \vspace{5cm} & \\
-  Παρακρατήθηκε φόρος / Withholding taxes \numprint{{{TAXRATE}}}\% = \euro\,\numprint{{{TAX}}} & \\
+  Παρακρατήθηκε φόρος / Withholding tax \numprint{{{TAXRATE}}}\% = \euro\,\numprint{{{TAX}}} & \\
   \hline
 \end{tabu}
 
 \vspace{1cm}
 \begin{tabu} to \textwidth {|X[1]|X[3]|X[1.5]|>{\tabudecimal \usermacro}X[r]|}
 \hline
-\multirow{3}{*}{\shortstack{Ολογράφως \\ In words}} 
-& \multirow{3}{6cm}{{{NUMBERTEXT}}}  
+\multirow{4}{*}{\shortstack{Ολογράφως \\ In words}} 
+& \multirow{4}{6cm}[1em]{ 
+  \parbox[t]{6cm}{ {{NUMBERTEXT}} \\ {{NUMBERTEXTEN}} } }  
 & Αξία / Value: & {{VALUE}} \\
  & & ΦΠΑ / VAT \numprint{{{VATRATE}}}\%: & {{VAT}} \\
  & & Σύνολο / Total: & {{TOTAL}} \\
+& & & \\
 \hline
 \end{tabu}
 
