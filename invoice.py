@@ -248,13 +248,15 @@ def num_to_text(number, english=False):
     return num_to_text_billions(number, english)
 
 
-parser = argparse.ArgumentParser(description='Invoice creator')
+parser = argparse.ArgumentParser(description='Invoice generator')
 parser.add_argument('invoice_data')
 parser.add_argument('-t', '--template', dest='template',
-                    default='invoice.tex')
+                    default='invoice.tex',
+                    help='Use TEMPLATE as LaTeX template')
 parser.add_argument('-e', '--english', dest='english',
                     action='store_true',
-                    default=False)
+                    default=False,
+                    help='Include English output')
 
 args = parser.parse_args()
 
