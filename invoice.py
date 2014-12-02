@@ -252,11 +252,11 @@ parser = argparse.ArgumentParser(description='Invoice generator')
 parser.add_argument('invoice_data')
 parser.add_argument('-t', '--template', dest='template',
                     default='invoice.tex',
-                    help='Use TEMPLATE as LaTeX template')
+                    help='use TEMPLATE as LaTeX template')
 parser.add_argument('-e', '--english', dest='english',
                     action='store_true',
                     default=False,
-                    help='Include English output')
+                    help='include English output')
 
 args = parser.parse_args()
 
