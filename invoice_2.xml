@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<invoice>
+  <num>2</num>
+  <date>02/12/2014</date>
+  <stamp>
+    ΠΑΝΑΓΙΩΤΗΣ ΘΕΟΔ.\ ΛΟΥΡΙΔΑΣ \\
+    PANAGIOTIS T.\ LOURIDAS\\
+    ΣΥΜΒΟΥΛΟΣ ΠΛΗΡΟΦΟΡΙΚΗΣ \\
+    INFORMATICS CONSULTANT \\
+    Νομάδων 44---Τ.Κ. 91019 \\
+    ΑΦΜ: 075723706---ΔΟΥ: ΣΕΛΗΝΗΣ\\
+    TIN: 98765432310---TAX OFFICE: SELINIS
+  </stamp>
+  <client>GRNET S.A.
+  </client>
+  <occupation>Networking Services
+  </occupation>
+  <taxoffice>Large Enterprises
+  </taxoffice>
+  <address>56, Mesogeion Avenue, 11527, Athens, Greece
+  </address>
+  <taxnumber>0123456789</taxnumber>
+  <description>Consulting services for All Together Now Project,
+  contract  2341/22-12-2012
+  </description>
+  <value>1710</value>
+  <tax_rate>0.20</tax_rate>
+  <vat_rate>0.0</vat_rate>
+</invoice>
