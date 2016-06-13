@@ -286,7 +286,7 @@ vat_rate_el = root.find('vat_rate')
 if vat_rate_el is not None:
     vat_rate = vat_rate_el.text
 else:
-    vat_rate = "0.23" # default value
+    vat_rate = "0.24" # default value
 vat_rate_f = float(vat_rate)
 vat_rate_prc = "{:.2f}".format(vat_rate_f * 100)
 if vat_rate_prc.endswith('.00'):
