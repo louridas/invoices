@@ -247,7 +247,12 @@ def num_to_text_billions(number, english=False):
 def num_to_text(number, english=False):
     return num_to_text_billions(number, english)
 
-
+def make_percentage(number):
+    percentage = "{:.2f}".format(number * 100)
+    if percentage.endswith('.00'):
+        percentage = percentage.replace('.00', '')
+    return percentage
+    
 parser = argparse.ArgumentParser(description='Invoice generator')
 parser.add_argument('invoice_data')
 parser.add_argument('-t', '--template', dest='template',
@@ -274,23 +279,27 @@ taxnumber = root.find('taxnumber').text
 description = root.find('description').text
 value_f = float(root.find('value').text)
 tax_rate_el = root.find('tax_rate')
+uni_rate_el = root.find('uni_rate')
 if tax_rate_el is not None:
     tax_rate = tax_rate_el.text
 else:
     tax_rate = "0.20" # default value
 tax_rate_f = float(tax_rate)
-tax_rate_prc = "{:.2f}".format(tax_rate_f * 100)
-if tax_rate_prc.endswith('.00'):
-    tax_rate_prc = tax_rate_prc.replace('.00', '')
+tax_rate_prc = make_percentage(tax_rate_f)
 vat_rate_el = root.find('vat_rate')
 if vat_rate_el is not None:
     vat_rate = vat_rate_el.text
 else:
     vat_rate = "0.24" # default value
 vat_rate_f = float(vat_rate)
-vat_rate_prc = "{:.2f}".format(vat_rate_f * 100)
-if vat_rate_prc.endswith('.00'):
-    vat_rate_prc = vat_rate_prc.replace('.00', '')
+vat_rate_prc = make_percentage(vat_rate_f)
+if uni_rate_el is not None:
+    uni_rate = uni_rate_el.text
+else:
+    uni_rate = '0.07'
+uni_rate_f = float(uni_rate)
+uni_rate_prc = make_percentage(uni_rate_f)
+
 value = "{:.2f}".format(value_f)
 tax_f = value_f * tax_rate_f
 vat_element = root.find('vat')
@@ -305,6 +314,9 @@ total = "{:.2f}".format(total_f)
 (intpart, floatpart) = total.split('.')
 
 numbertext = "{0} ευρώ".format(num_to_text(int(intpart)))
+
+uni_f = total_f * uni_rate_f
+uni = "{:.2f}".format(uni_f) 
 
 if args.english:
     numbertext_en = "{0} euros".format(num_to_text(int(intpart), True))
@@ -356,6 +368,8 @@ with codecs.open(args.template, mode='r', encoding='utf-8') as inf:
                                 numbertext.decode('utf-8').capitalize())
             line = line.replace("{{NUMBERTEXTEN}}",
                                 numbertext_en.decode('utf-8').capitalize())
+            line = line.replace("{{UNIRATE}}", uni_rate_prc)
+            line = line.replace("{{UNI}}", uni)
                 
             outf.write(line)
 
