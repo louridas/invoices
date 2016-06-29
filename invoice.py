@@ -315,7 +315,7 @@ total = "{:.2f}".format(total_f)
 
 numbertext = "{0} ευρώ".format(num_to_text(int(intpart)))
 
-uni_f = total_f * uni_rate_f
+uni_f = value_f * uni_rate_f
 uni = "{:.2f}".format(uni_f) 
 
 if args.english:
