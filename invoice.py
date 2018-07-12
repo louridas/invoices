@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import codecs
 import sys
 import xml.etree.ElementTree as ET
 import argparse
@@ -346,8 +345,8 @@ if floatpart != '' :
 
 outfn = 'invoice_' + num + '.tex'
   
-with codecs.open(args.template, mode='r', encoding='utf-8') as inf:
-    with codecs.open(outfn, mode='w', encoding='utf-8') as outf:
+with open(args.template, mode='r', encoding='utf-8') as inf:
+    with open(outfn, mode='w', encoding='utf-8') as outf:
         for line in inf:
             line = line.replace("{{NUM}}", num)
             line = line.replace("{{DATE}}", date)
@@ -364,12 +363,9 @@ with codecs.open(args.template, mode='r', encoding='utf-8') as inf:
             line = line.replace("{{VATRATE}}", vat_rate_prc)
             line = line.replace("{{VAT}}", vat)
             line = line.replace("{{TOTAL}}", total)
-            line = line.replace("{{NUMBERTEXT}}",
-                                numbertext.decode('utf-8').capitalize())
-            line = line.replace("{{NUMBERTEXTEN}}",
-                                numbertext_en.decode('utf-8').capitalize())
+            line = line.replace("{{NUMBERTEXT}}", numbertext.capitalize())
+            line = line.replace("{{NUMBERTEXTEN}}", numbertext_en.capitalize())
             line = line.replace("{{UNIRATE}}", uni_rate_prc)
             line = line.replace("{{UNI}}", uni)
-                
             outf.write(line)
 
