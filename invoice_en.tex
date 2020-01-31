@@ -5,6 +5,7 @@
 \usepackage[framemethod=TikZ]{mdframed}
 
 \usepackage{tabularx}
+\usepackage{makecell}
 \usepackage{numprint}
 \newcommand{\fmoney}[1]{\euro\,\numprint{#1}}
 
@@ -88,8 +89,12 @@ ItalicFont={DejaVu Sans Oblique}]{DejaVu Sans}
     |>{\hsize=.4\hsize\linewidth=\hsize\raggedleft\arraybackslash}X|
   }
   \hline
-  \multirow{3}{*}{\shortstack{Ολογράφως \\ In words}}
-  & \multirow{3}{6cm}{{{NUMBERTEXT}}}
+  \multirow{4}{*}[1em]{ \makecell[cc]{Ολογράφως \\ In words} }
+  & \multirow{4}{6cm}[1em]{
+    \parbox[t]{6cm}{
+      {{NUMBERTEXT}} \\ {{NUMBERTEXTEN}}
+    }
+  }
   & Αξία / Value: & \fmoney{{{VALUE}}} \\
   & & ΦΠΑ / VAT \numprint{{{VATRATE}}}\%: & \fmoney{{{VAT}}} \\
   & & Σύνολο / Total : & \fmoney{{{TOTAL}}} \\
