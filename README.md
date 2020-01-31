@@ -37,7 +37,7 @@ The data are contained in the following elements:
 * description: the description of the work performed
 * value: the value of the work performed; this is the only amount that needs to be entered, as the withholding tax,  
   the VAT, as well the string representation of the amount are produced automatically
-* vat_rate: if present, the VAT rate to be applied; default is 0.23
+* vat_rate: if present, the VAT rate to be applied; default is 0.24
 * tax_rate: if present, the withholding tax rate to be applied; default is 0.20
 
 If you set `-e` then the program will also produce English output. Note that this may require small adjustments in the LaTeX file, as including both Greek and English numbers in full may take more vertical space than you may have foreseen in your LaTeX template file.
