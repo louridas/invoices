@@ -4,12 +4,10 @@
 
 \usepackage[framemethod=TikZ]{mdframed}
 
-\usepackage{tabu}
+\usepackage{tabularx}
 \usepackage{numprint}
-\makeatletter
-\def\usermacro#1{\euro\,\numprint{\zap@space #1 \@empty}}
-\makeatother
-\tabulinesep=0.1cm
+\newcommand{\fmoney}[1]{\euro\,\numprint{#1}}
+
 
 \thispagestyle{empty}
 % DOCUMENT LAYOUT
@@ -23,6 +21,8 @@
 \usepackage{eurosym}
 \usepackage{xunicode}
 \usepackage{xltxtra}
+
+\renewcommand{\arraystretch}{1.2}
 
 \defaultfontfeatures{Mapping=tex-text} 
 \setromanfont [Ligatures={Common},
@@ -66,29 +66,35 @@ ItalicFont={DejaVu Sans Oblique}]{DejaVu Sans}
 ΔΙΕΥΘΥΝΣΗ / ADDRESS: {{ADDRESS}}
 
 \vspace{0.4cm}
-\begin{tabu} to \textwidth {|X[4]|>{\tabudecimal \usermacro}X[r]|}
+\begin{tabularx}{\textwidth}{
+    |>{\hsize=1.6\hsize\linewidth=\hsize}X
+    |>{\hsize=.4\hsize\linewidth=\hsize\raggedleft\arraybackslash}X|    
+  }
   \hline
-  \begin{center}ΑΙΤΙΟΛΟΓΙΑ---ΠΕΡΙΓΡΑΦΗ /
-    DESCRIPTION \end{center}& \begin{center}ΑΞΙΑ / VALUE\end{center}\\
-  \hline 
-  {{DESCRIPTION}} & {{VALUE}}\\ 
-  \vspace{5cm} & \\
-  Παρακρατήθηκε φόρος / Withholding tax \numprint{{{TAXRATE}}}\% = \euro\,\numprint{{{TAX}}} & \\
+  \begin{center}ΑΙΤΙΟΛΟΓΙΑ---ΠΕΡΙΓΡΑΦΗ / DESCRIPTION\end{center}&
+  \begin{center}ΑΞΙΑ / VALUE\end{center}\\
   \hline
-\end{tabu}
+  {{DESCRIPTION}} & \fmoney{{{VALUE}}}\\[3cm]
+  Παρακρατήθηκε φόρος / Withholding tax \numprint{{{TAXRATE}}}\% =
+  \fmoney{{{TAX}}} & \\
+  \hline
+\end{tabularx}  
 
 \vspace{1cm}
-\begin{tabu} to \textwidth {|X[1]|X[3]|X[1.5]|>{\tabudecimal \usermacro}X[r]|}
-\hline
-\multirow{4}{*}{\shortstack{Ολογράφως \\ In words}} 
-& \multirow{4}{6cm}[1em]{ 
-  \parbox[t]{6cm}{ {{NUMBERTEXT}} \\ {{NUMBERTEXTEN}} } }  
-& Αξία / Value: & {{VALUE}} \\
- & & ΦΠΑ / VAT \numprint{{{VATRATE}}}\%: & {{VAT}} \\
- & & Σύνολο / Total: & {{TOTAL}} \\
-& & & \\
-\hline
-\end{tabu}
+\begin{tabularx}{\textwidth}{
+    |>{\hsize=.5\hsize\linewidth=\hsize}X
+    |>{\hsize=1.5\hsize\linewidth=\hsize}X
+    |>{\hsize=.6\hsize\linewidth=\hsize}X
+    |>{\hsize=.4\hsize\linewidth=\hsize\raggedleft\arraybackslash}X|
+  }
+  \hline
+  \multirow{3}{*}{\shortstack{Ολογράφως \\ In words}}
+  & \multirow{3}{6cm}{{{NUMBERTEXT}}}
+  & Αξία / Value: & \fmoney{{{VALUE}}} \\
+  & & ΦΠΑ / VAT \numprint{{{VATRATE}}}\%: & \fmoney{{{VAT}}} \\
+  & & Σύνολο / Total : & \fmoney{{{TOTAL}}} \\
+  \hline
+\end{tabularx}
 
 \vspace{1cm}
 \begin{center}

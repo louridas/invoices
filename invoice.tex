@@ -4,12 +4,9 @@
 
 \usepackage[framemethod=TikZ]{mdframed}
 
-\usepackage{tabu}
+\usepackage{tabularx}
 \usepackage{numprint}
-\makeatletter
-\def\usermacro#1{\euro\,\numprint{\zap@space #1 \@empty}}
-\makeatother
-\tabulinesep=0.1cm
+\newcommand{\fmoney}[1]{\euro\,\numprint{#1}}
 
 \thispagestyle{empty}
 % DOCUMENT LAYOUT
@@ -20,6 +17,8 @@
 \usepackage{eurosym}
 \usepackage{xunicode}
 \usepackage{xltxtra}
+
+\renewcommand{\arraystretch}{1.2}
 
 \defaultfontfeatures{Mapping=tex-text} 
 \setromanfont [Ligatures={Common},
@@ -32,13 +31,22 @@ ItalicFont={DejaVu Sans Oblique}]{DejaVu Sans}
 
 \fontsize{10}{12}\selectfont
 
-\vspace{3cm}
-
-\begin{minipage}{0.4\textwidth}
-ΑΡΙΘΜΟΣ: {{NUM}}\\
-ΗΜΕΡΟΜΗΝΙΑ: {{DATE}}\\
-\end{minipage}
-\begin{minipage}{0.5\textwidth}
+\begin{minipage}[t]{0.4\textwidth}
+{\footnotesize
+Στοιχεία σύμφωνα με την Κ.Υ.Α.\\
+ΙΒ 10900/18.12.1997\\
+(ΦΕΚ 1163Β/3012.1997):\\
+Ειδικός Λογαριασμός Κονδυλίων Έρευνας\\
+Οικονομικού Πανεπιστημίου Αθηνών\\
+Πατησίων 76, 104 34 Αθήνα\\
+Τηλ.\ 210 8665350\\
+Fax 210 8676265 \\
+ΑΦΜ 090034337 ΔΟΥ ΙΑ’ Αθηνών
+}
+\end{minipage}%
+%
+\hspace{1em}
+\begin{minipage}[t]{0.5\textwidth}
 \begin{mdframed}[roundcorner=10pt]
 \begin{center}
 {{STAMP}}
@@ -46,36 +54,57 @@ ItalicFont={DejaVu Sans Oblique}]{DejaVu Sans}
 \end{mdframed}
 \end{minipage}
 
-{\Large ΤΙΜΟΛΟΓΙΟ}
+\vspace{0.6cm}
 
-\vspace{0.8cm}
+\begin{minipage}[t]{0.4\textwidth}
+{\Large ΤΙΜΟΛΟΓΙΟ}
+\end{minipage}
+\begin{minipage}[t]{0.6\textwidth}
+ΑΡΙΘΜΟΣ: {{NUM}}\\
+ΗΜΕΡΟΜΗΝΙΑ: {{DATE}}\\
+\end{minipage}
+
+\vspace{0.2cm}
 
 ΕΠΩΝΥΜΙΑ: {{CLIENT}}\\[0.2cm]
 ΕΠΑΓΓΕΛΜΑ: {{OCCUPATION}} ΔΟΥ: {{TAXOFFICE}}\\ [0.2cm]
 ΔΙΕΥΘΥΝΣΗ: {{ADDRESS}} ΑΦΜ: {{TAXNUMBER}}\\ [0.2cm]
 
 \vspace{0.4cm}
-\begin{tabu} to \textwidth {|X[4]|>{\tabudecimal \usermacro}X[r]|}
+\begin{tabularx}{\textwidth}{
+    |>{\hsize=1.6\hsize\linewidth=\hsize}X
+    |>{\hsize=.4\hsize\linewidth=\hsize\raggedleft\arraybackslash}X|    
+  }
   \hline
   \begin{center}ΑΙΤΙΟΛΟΓΙΑ---ΠΕΡΙΓΡΑΦΗ \end{center}& \begin{center}ΑΞΙΑ\end{center}\\
-  \hline 
-  {{DESCRIPTION}} & {{VALUE}}\\ 
-  \vspace{5cm} & \\
-  Παρακρατήθηκε φόρος \numprint{{{TAXRATE}}}\% = \euro\,\numprint{{{TAX}}} & \\
   \hline
-\end{tabu}
+  {{DESCRIPTION}} & \fmoney{{{VALUE}}}\\[3cm]
+  Παρακρατήθηκε φόρος \numprint{{{TAXRATE}}}\% = \fmoney{{{TAX}}} & \\
+  \hline
+\end{tabularx}  
 
 \vspace{1cm}
-\begin{tabu} to \textwidth {|X[1]|X[3]|X[1.1]|>{\tabudecimal \usermacro}X[r]|}
-\hline
-\multirow{3}{*}{Ολογράφως} & \multirow{3}{6cm}{{{NUMBERTEXT}}}  
-& Αξία: & {{VALUE}} \\
- & & ΦΠΑ \numprint{{{VATRATE}}}\%: & \euro\,\numprint{{{VAT}}} \\
- & & Σύνολο: & {{TOTAL}} \\
-\hline
-\end{tabu}
+\begin{tabularx}{\textwidth}{
+    |>{\hsize=.5\hsize\linewidth=\hsize}X
+    |>{\hsize=1.5\hsize\linewidth=\hsize}X
+    |>{\hsize=.6\hsize\linewidth=\hsize}X
+    |>{\hsize=.4\hsize\linewidth=\hsize\raggedleft\arraybackslash}X|
+  }
+  \hline
+  \multirow{3}{*}{Ολογράφως} & \multirow{3}{6cm}{{{NUMBERTEXT}}}
+  & Αξία: & \fmoney{{{VALUE}}} \\
+  & & ΦΠΑ \numprint{{{VATRATE}}}\%: & \fmoney{{{VAT}}} \\
+  & & Σύνολο: & \fmoney{{{TOTAL}}} \\
+  \hline
+\end{tabularx}
 
-\vspace{1cm}
+\vspace{0.2cm}
+Κράτηση υπέρ ΕΛΚΕ / Ο.Π.Α. \numprint{{{UNIRATE}}}\% = \euro\,\numprint{{{UNI}}}.
+
+\vspace{0.2cm}
+Υπάγομαι στην παράγραφο 9 του άρθρου 39 του νόμου 4387/2016.
+
+\vspace{0.5cm}
 \begin{center}
 Έκδοση
 \end{center}
